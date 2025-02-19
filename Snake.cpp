@@ -8,6 +8,8 @@ Snake::Snake(int gridWidth, int gridHeight)
 }
 
 void Snake::move() {
+    direction = nextDirection;
+
     sf::Vector2i newHead = body.front();
 
     switch (direction) {
@@ -33,7 +35,7 @@ void Snake::setDirection(Direction dir) {
         (direction == Direction::RIGHT && dir == Direction::LEFT)) {
         return;
         }
-    direction = dir;
+    nextDirection = dir;
 }
 
 bool Snake::checkCollision() {
