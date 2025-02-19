@@ -48,6 +48,8 @@ Game::Game()
 }
 
 void Game::run() {
+    window.setFramerateLimit(120);
+
     sf::Clock clock;
 
     while (window.isOpen()) {
