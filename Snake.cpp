@@ -26,6 +26,7 @@ void Snake::grow() {
 }
 
 void Snake::setDirection(Direction dir) {
+    // verhindert direktes umkehren
     if ((direction == Direction::UP && dir == Direction::DOWN) ||
         (direction == Direction::DOWN && dir == Direction::UP) ||
         (direction == Direction::LEFT && dir == Direction::RIGHT) ||
@@ -38,10 +39,12 @@ void Snake::setDirection(Direction dir) {
 bool Snake::checkCollision() {
     const auto& head = body.front();
 
+    // Überprüfung, ob die Schlange mit der Spielfeldbegrenzung kollidiert
     if (head.x < 0 || head.y < SCORE_HEIGHT / TILE_SIZE || head.x >= gridWidth || head.y >= gridHeight) {
         return true;
     }
 
+    // Überprüfung, ob die Schlange mit sich selbst kollidiert
     for (size_t i = 1; i < body.size(); i++) {
         if (body[i] == head) return true;
     }

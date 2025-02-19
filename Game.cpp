@@ -1,6 +1,11 @@
 #include "Game.h"
 #include <iostream>
 
+const int TILE_SIZE = 32;
+const int GRID_WIDTH = 17;
+const int GRID_HEIGHT = 15;
+const int SCORE_HEIGHT = 50;
+
 Game::Game()
     :   window(sf::VideoMode(GRID_WIDTH * TILE_SIZE, GRID_HEIGHT * TILE_SIZE + SCORE_HEIGHT), "Snake"),
         snake(GRID_WIDTH, GRID_HEIGHT),
@@ -30,6 +35,7 @@ Game::Game()
     highScoreSprite.setTexture(highScoreTexture);
     highScoreSprite.setPosition(100, 8);
 
+    // Initialisiert die Score Anzeige
     scoreText.setFont(font);
     scoreText.setCharacterSize(24);
     scoreText.setFillColor(sf::Color::White);
@@ -71,6 +77,7 @@ void Game::handleInput() {
             window.close();
         }
 
+        // Events für die Steuerung
         if (event.type == sf::Event::KeyPressed) {
             gameStarted = true;
 
@@ -80,6 +87,7 @@ void Game::handleInput() {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) snake.setDirection(Direction::RIGHT);
         }
 
+        // Klick Event für den restart-Button
         if (event.type == sf::Event::MouseButtonPressed && gameOver) {
             sf::Vector2i mousePos = sf::Mouse::getPosition(window);
             if (restartButton.getGlobalBounds().contains(mousePos.x, mousePos.y)) {
@@ -87,6 +95,7 @@ void Game::handleInput() {
             }
         }
 
+        // Klick Event für den quit-Button
         if (event.type == sf::Event::MouseButtonPressed && gameOver) {
             sf::Vector2i mousePos = sf::Mouse::getPosition(window);
             if (quitButton.getGlobalBounds().contains(mousePos.x, mousePos.y)) {
@@ -107,6 +116,7 @@ void Game::update() {
         gameOver = true;
     }
 
+    // Schlange vergrößern, wenn die Schlange mit dem Essen kollidiert
     if (snake.getHeadPosition() == food.getPosition()) {
         snake.grow();
         food.respawn();
@@ -115,6 +125,7 @@ void Game::update() {
     scoreText.setString(std::to_string(snake.getSize() - 1));
     highScoreText.setString(std::to_string(highScore));
 
+    // Highscore anzeigen/aktualisieren, wenn es ein Highscore ist
     if (snake.getSize() - 1 > highScore) {
         highScoreText.setString(std::to_string(snake.getSize() - 1));
         highScore = snake.getSize() - 1;
@@ -182,7 +193,6 @@ void Game::render() {
         quitText.setFillColor(sf::Color::White);
         quitText.setPosition(165, 374);
 
-        // Alles drawen
         window.draw(gameOverOverlay);
         window.draw(gameOverhighScoreSprite);
         window.draw(gameOverfoodSprite);
@@ -192,7 +202,6 @@ void Game::render() {
         window.draw(restartText);
         window.draw(quitButton);
         window.draw(quitText);
-
     }
 
     window.draw(scoreText);

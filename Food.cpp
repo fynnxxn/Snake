@@ -15,8 +15,8 @@ void Food::setFoodTexture(const sf::Texture& texture) {
 }
 
 void Food::respawn() {
-    position.x = rand() % gridWidth;
-    position.y = rand() % gridHeight;
+    position.x = rand() % gridWidth;    // zufällige x-Position innerhalb des Spielfeldes
+    position.y = rand() % gridHeight;   // zufällige y-Position innerhalb des Spielfeldes
 }
 
 sf::Vector2i Food::getPosition() const {

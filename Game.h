@@ -1,3 +1,7 @@
+/**
+ * @file Game.h
+ * @brief Header-Datei für dieses Snake Spiel
+ */
 #ifndef GAME_H
 #define GAME_H
 
@@ -5,48 +9,94 @@
 #include "Snake.h"
 #include "Food.h"
 
-const int TILE_SIZE = 32;
-const int GRID_WIDTH = 17;
-const int GRID_HEIGHT = 15;
-const int SCORE_HEIGHT = 50;
+/**
+ * @brief Größe eines Tiles in Pixeln
+ */
+extern const int TILE_SIZE;
+/**
+ * @brief Breite des Spielfeldes in Anzahl der Tiles
+ */
+extern const int GRID_WIDTH;
+/**
+ * @brief Höhe des Spielfeldes in Anzahl der Tiles
+ */
+extern const int GRID_HEIGHT;
+/**
+ * @brief Höhe des Bereiches für den Score in Pixeln
+ */
+extern const int SCORE_HEIGHT;
 
+/**
+ * @class Game
+ * @brief Hautpklasse für das Snake Spiel
+ * @details Diese Klasse verwaltet das komplette Spiel. Sie initialisiert das Spielfeld, verarbeitet Eingaben,
+ * aktualisiert den Spielzustand und rendert die Grafiken
+ */
 class Game {
 public:
+    /**
+     * @brief Konstruktor der Game-Klasse
+     * @details Initialisiert das Spielfenster, lädt Ressourcen und setzt alle Spielvariablen auf ihren Startwert
+     */
     Game();
+
+    /**
+     * @brief Startet die Hauptschleife für das Spiel
+     */
     void run();
 
 private:
+    /**
+     * @brief Verarbeitet Benutzereingaben
+     */
     void handleInput();
+
+    /**
+     * @brief Aktualisiert den Spielzustand
+     */
     void update();
+
+    /**
+     * @brief Rendert das Spiel und die Elemente
+     */
     void render();
+
+    /**
+     * @brief setzt das Spiel nach einer Kollision zurück
+     */
     void resetGame();
 
-    sf::RenderWindow window;
-    Snake snake;
-    Food food;
-    sf::Font font;
-    sf::Text scoreText;
-    sf::Text highScoreText;
-    sf::Texture backgroundTexture;
-    sf::Sprite backgroundSprite;
-    sf::Texture foodTexture;
-    sf::Sprite foodSprite;
-    sf::Texture highScoreTexture;
-    sf::Sprite highScoreSprite;
-    sf::Text gameOverText;
-    sf::RectangleShape restartButton;
-    sf::Text restartText;
-    sf::RectangleShape gameOverOverlay;
-    sf::Sprite gameOverhighScoreSprite;
-    sf::Sprite gameOverfoodSprite;
-    sf::Text gameOverScoreText;
-    sf::Text gameOverHighScoreText;
-    sf::RectangleShape quitButton;
-    sf::Text quitText;
+    sf::RenderWindow window;    /// Spielfenster
+    Snake snake;                /// Instanz der Snake-Klasse
+    Food food;                  /// Instanz der Food-Klasse
 
-    bool gameOver;
-    bool gameStarted;
-    int highScore = 0;
+    sf::Font font;              /// Schriftart
+    sf::Text scoreText;         /// Text für den Score
+    sf::Text highScoreText;     /// Text für den Highscore
+
+    sf::Texture backgroundTexture;  /// Hintergrund-Textur
+    sf::Sprite backgroundSprite;    /// Hintergrund-Sprite
+
+    sf::Texture foodTexture;        /// Textur für das Essen
+    sf::Sprite foodSprite;          /// Sprite für das Essen
+
+    sf::Texture highScoreTexture;   /// Textur für den Highscore
+    sf::Sprite highScoreSprite;     /// Sprite für den Highscore
+
+    sf::RectangleShape gameOverOverlay; /// Overlay bei einer Spielniederlage
+    sf::Sprite gameOverhighScoreSprite; /// Sprite für den Highscore im Overlay
+    sf::Sprite gameOverfoodSprite;      /// Sprite für den Score im Overlay
+    sf::Text gameOverScoreText;         /// Text für den Score im Overlay
+    sf::Text gameOverHighScoreText;     /// Text für den Highscore im Overlay
+
+    sf::RectangleShape restartButton;   /// Button zum Spiel neu starten
+    sf::Text restartText;               /// Text für den restart-Button
+    sf::RectangleShape quitButton;      /// Button zum Spiel schließen
+    sf::Text quitText;                  /// Text für den quit-Button
+
+    bool gameOver;      /// Statusvariable für das Spielende
+    bool gameStarted;   /// Statusvariable für den Spielstart
+    int highScore = 0;  /// Speichert den Highscore
 };
 
 
