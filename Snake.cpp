@@ -64,8 +64,9 @@ int Snake::getSize() const {
 
 void Snake::draw(sf::RenderWindow& window) {
     sf::RectangleShape rect(sf::Vector2f(TILE_SIZE, TILE_SIZE));
-    rect.setFillColor(sf::Color(66,133,244));
+    rect.setFillColor(sf::Color(66,133,240));
 
+    // Position für alle Segmente der Schlange setzen und zeichnen
     for (const auto& segment : body) {
         rect.setPosition(segment.x * TILE_SIZE, segment.y * TILE_SIZE + SCORE_HEIGHT);
         window.draw(rect);
