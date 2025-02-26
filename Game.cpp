@@ -178,7 +178,7 @@ void Game::render() {
         gameOverHighScoreText.setFillColor(sf::Color::White);
         gameOverHighScoreText.setPosition(264, 210);
 
-        // Nochmal Spielen Button
+        // "Spielen" Button
         restartButton.setSize(sf::Vector2f(224, 32));
         restartButton.setFillColor(sf::Color(66,133,244));
         restartButton.setPosition(160, 8 * TILE_SIZE + SCORE_HEIGHT);
@@ -188,7 +188,7 @@ void Game::render() {
         restartText.setFillColor(sf::Color::White);
         restartText.setPosition(165, 310);
 
-        // Quit Button
+        // "Spiel beenden" Button
         quitButton.setSize(sf::Vector2f(224, 32));
         quitButton.setFillColor(sf::Color(66,133,244));
         quitButton.setPosition(160, 10 * TILE_SIZE + SCORE_HEIGHT);
