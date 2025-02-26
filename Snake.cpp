@@ -42,7 +42,7 @@ bool Snake::checkCollision() {
     const auto& head = body.front();
 
     // Überprüfung, ob die Schlange mit der Spielfeldbegrenzung kollidiert
-    if (head.x < 0 || head.y < SCORE_HEIGHT / TILE_SIZE || head.x >= gridWidth || head.y >= gridHeight) {
+    if (head.x < 0 || head.y < 0 || head.x >= gridWidth || head.y >= gridHeight) {
         return true;
     }
 
