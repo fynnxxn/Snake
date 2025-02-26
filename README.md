@@ -27,4 +27,5 @@ Ein klassisches Snake-Spiel mit moderner Grafik und einem Punktesystem.
 ## 📧 Kontakt
 Entwickler: Fynnian Kolbe  
 GitHub: [github.com/FynnianKolbe](https://github.com/fynnxxn)
+
 Link zum Repository: [Snake](https://github.com/fynnxxn/Snake)
