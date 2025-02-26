@@ -150,8 +150,11 @@ void Game::render() {
     window.draw(backgroundSprite);
     window.draw(foodSprite);
     window.draw(highScoreSprite);
-    snake.draw(window);
-    food.draw(window);
+
+    if (!gameOver) {
+        snake.draw(window);
+        food.draw(window);
+    }
 
     if (gameOver) {
 
