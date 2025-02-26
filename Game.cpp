@@ -13,21 +13,25 @@ Game::Game()
         gameStarted(false),
         gameOver(false) {
 
+    // Lädt die Schriftart
     if (!font.loadFromFile("../fonts/arial.ttf")) {
         std::cerr << "Fehler beim Laden der Schriftart!" << std::endl;
     }
 
+    // Lädt die Hintergrundgrafik
     if (!backgroundTexture.loadFromFile("../graphics/Snake_background.PNG")) {
         std::cerr << "Fehler beim Laden des Hintergrunds" << std::endl;
     }
     backgroundSprite.setTexture(backgroundTexture);
 
+    // Lädt den Apfel
     if (!foodTexture.loadFromFile("../graphics/food.png")) {
         std::cerr << "Fehler beim Laden des Essens" << std::endl;
     }
     food.setFoodTexture(foodTexture);
     gameOverfoodSprite.setTexture(foodTexture);
 
+    // Lädt den Pokal
     if (!highScoreTexture.loadFromFile("../graphics/trophy.png")) {
         std::cerr << "Fehler beim Laden des Pokals" << std::endl;
     }
@@ -35,7 +39,7 @@ Game::Game()
     highScoreSprite.setTexture(highScoreTexture);
     highScoreSprite.setPosition(100, 8);
 
-    // Initialisiert die Score Anzeige
+    // Initialisiert die Score-Anzeige
     scoreText.setFont(font);
     scoreText.setCharacterSize(24);
     scoreText.setFillColor(sf::Color::White);
@@ -45,6 +49,7 @@ Game::Game()
     foodSprite.setTexture(foodTexture);
     foodSprite.setPosition(10, 10);
 
+    // Initialisiert die Highscore-Anzeige
     highScoreText.setFont(font);
     highScoreText.setCharacterSize(24);
     highScoreText.setFillColor(sf::Color::White);
@@ -89,16 +94,16 @@ void Game::handleInput() {
 
         // Klick Event für den restart-Button
         if (event.type == sf::Event::MouseButtonPressed && gameOver) {
-            sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-            if (restartButton.getGlobalBounds().contains(mousePos.x, mousePos.y)) {
+            sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
+            if (restartButton.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
                 resetGame();
             }
         }
 
         // Klick Event für den quit-Button
         if (event.type == sf::Event::MouseButtonPressed && gameOver) {
-            sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-            if (quitButton.getGlobalBounds().contains(mousePos.x, mousePos.y)) {
+            sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
+            if (quitButton.getGlobalBounds().contains(mousePosition.x, mousePosition.y)) {
                 window.close();
             }
         }
